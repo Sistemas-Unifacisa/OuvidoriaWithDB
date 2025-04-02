@@ -37,4 +37,5 @@ while True:
         print("Opção inválida. Tente novamente.")
         ...
 print("INFO: A locadora agradece sua participação ")
+
 encerrarConexao(connection)

@@ -1,4 +1,4 @@
-from operacoesbd import listarBancoDados
+from operacoesbd import listarBancoDados, encerrarConexao
 
 def listar_manifestações(conn):
     sql = (
