@@ -2,9 +2,9 @@ from operacoesbd import insertNoBancoDados
 
 def adicionarManifestação(connection):
 
-    print("1) Reclamação")
-    print("2) Elogio")
-    print("3) Sugestões")
+    print("1) Adicionar Reclamação")
+    print("2) Adicionar Elogio")
+    print("3) Adicionar Sugestões")
     resposta = int(input('\nEscolha uma categoria :\n'))
     if resposta == 1:
 
