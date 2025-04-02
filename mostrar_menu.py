@@ -10,10 +10,11 @@ def mostrar_menu():
 
     print("""
     ---------- Opçoes ----------
-    1- Listar Filmes Disponiveis 
-    2- Adicionar Filme
-    3- Remover Filmes
-    4- Mostrar Filmes Locados 
-    5- Editar informações do filme
-    6- Sair 
+• 1) Listagem das Manifestações 
+• 2) Listagem de Manifestações por Tipo 
+• 3) Criar uma nova Manifestação  
+• 4) Exibir quantidade de manifestações  
+• 5) Pesquisar uma manifestação por código 
+• 6) Excluir uma Manifestação pelo Código 
+• 7) Sair do Sistema. 
     ----------------------""")

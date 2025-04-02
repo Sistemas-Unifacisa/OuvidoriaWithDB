@@ -9,7 +9,7 @@ from def_listar import listar_filmes
 from operacoesbd import criarConexao, encerrarConexao
 from def_adicionar import adicionarFilme
 from mostrar_menu import mostrar_menu
-from opcoes import LISTAR, ADICIONAR, REMOVER, MOSTRAR_LOCADOS, EDITAR, SAIR
+from opcoes import *
 
 connection = criarConexao(
     endereco="localhost", usuario="monty", senha="admin", bancodedados="teste"
@@ -19,24 +19,22 @@ while True:
 
     opcao = int(input("> Escolha uma opção: "))
 
-    if opcao == LISTAR:  # listar filmes
-        listar_filmes(connection)
-
-    elif opcao == ADICIONAR:  # adicionar Filme
-        adicionarFilme(connection)
-
-    elif opcao == REMOVER:  # Remover Filmes
+    if opcao == 1: # Listagem das Manifestações
         ...
-
-    elif opcao == MOSTRAR_LOCADOS:  # Remover Filmes
+    elif opcao == 2: # Listagem de Manifestações por Tipo
         ...
-    elif opcao == EDITAR:  # Editar informações do filme ( fazer todos juntos )
+    elif opcao == 3: # Criar uma nova Manifestação
         ...
-    elif opcao == SAIR:
+    elif opcao == 4: # Exibir quantidade de manifestações
+        ...
+    elif opcao == 5: # Pesquisar uma manifestação por código
+        ...
+    elif opcao == 6: # Excluir uma Manifestação pelo Código
+        ...
+    elif opcao == 7: # Sair do Sistema
         break
-        ...
     else:
-        print("ERRO: Opção invalida!")
-
+        print("Opção inválida. Tente novamente.")
+        ...
 print("INFO: A locadora agradece sua participação ")
 encerrarConexao(connection)
