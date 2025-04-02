@@ -16,8 +16,7 @@ def listar_manifestações(conn):
 
 
 
-'''Tratamentos Necessários: 
+'''  Tratamentos Necessários: 
 • Ao listar, caso não tenha nenhuma manifestação, informar ao usuário que não 
 existem manifestações cadastradas 
-
- print(f"{listar_manifestações}")  # inporta do banco e retorna num print'''
+• Ao listar, exibir o número da manifestação e a data de abertura da manifestação'''
