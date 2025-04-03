@@ -9,6 +9,7 @@ class Manifestacao:
     def inserir(self):
         connection = get_connection()
 
+        # usado o self.__class__.__name__ para pegar o nome da classe
         sql = f"INSERT INTO {self.__class__.__name__} (descricao) VALUES ('{self.descricao}')"
 
         result = insertNoBancoDados(connection, sql)
@@ -24,10 +25,13 @@ class Manifestacao:
         pass
 
 
-class Sugestao(Manifestacao): ...
+class Sugestao(Manifestacao):
+    ...
 
 
-class Reclamacao(Manifestacao): ...
+class Reclamacao(Manifestacao):
+    ...
 
 
-class Elogio(Manifestacao): ...
+class Elogio(Manifestacao):
+    ...

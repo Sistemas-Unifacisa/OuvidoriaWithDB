@@ -1,4 +1,6 @@
 from tabelas import Reclamacao
+from tabelas import Elogio
+from tabelas import Sugestao
 
 
 def adicionar_manifestacao():
@@ -8,7 +10,7 @@ def adicionar_manifestacao():
     resposta = int(input("\nEscolha uma categoria :\n"))
 
     if resposta == 1:
-        descricao = str(input("\nDigite a sua reclamação:\n")).strip()
+        descricao = input("\nDigite a sua reclamação:\n").strip()
 
         if len(descricao) == 0:
             print("Erro! Campo vazio")
@@ -27,14 +29,27 @@ def adicionar_manifestacao():
         if len(descricao) == 0:
             print("Erro! Campo vazio")
         else:
-            print("Elogio registrado com sucesso!")
+            elogio = Elogio(descricao=descricao)
+            elogio.inserir()
+
+            if elogio:
+                print("Elogio registrada com sucesso!")
+            else:
+                print("Erro ao registrar a elogio.")
 
     elif resposta == 3:
         descricao = input("\nDigite a sua Sugestão:\n")
         if len(descricao) == 0:
             print("Erro! Campo vazio")
         else:
-            print("Sugestão registrada com sucesso!")
+            sugestao = Sugestao(descricao=descricao)
+            sugestao.inserir()
+
+            if sugestao:
+                print("Sugestão resgistrada com sucesso!")
+            else:
+                print("Erro ao registrar a sugestão.")
+
     else:
         print("Erro! Categoria não encontrada")
 

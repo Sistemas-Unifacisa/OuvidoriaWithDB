@@ -9,7 +9,8 @@ from def_listar import listar_manifestacoes
 from operacoesbd import criarConexao, encerrarConexao
 from def_adicionar import adicionar_manifestacao
 from mostrar_menu import mostrar_menu
-
+from create_tables import load_database_config
+load_database_config()
 # TODO: Solicitar login com nome do usuário para registro no sistema.
 
 while True:
