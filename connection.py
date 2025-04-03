@@ -1,19 +1,9 @@
-from operacoesbd import criarConexao, insertNoBancoDados, encerrarConexao
+from operacoesbd import criarConexao
 
-# Aprendendo a conexão com o banco de dados mysql
 
-# Inicializando conexão com o mariaDB
+def get_connection():
+    connection = criarConexao(
+        endereco="localhost", usuario="root", senha="admin", bancodedados="test_db"
+    )
 
-connnection = criarConexao(
-    endereco="localhost", usuario="monty", senha="admin", bancodedados="teste"
-)
-
-# Inserindo dados no banco de dados
-
-sql = f"INSERT INTO filmes (titulo, ano, genero) VALUES ({'Titanic'}, {1997}, {'Romance'})"
-
-id = insertNoBancoDados(connnection, sql)
-
-print(f"ID do filme inserido: {id}")
-
-encerrarConexao(connnection)
+    return connection
