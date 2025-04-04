@@ -1,6 +1,5 @@
 from operacoesbd import listarBancoDados, encerrarConexao
 
-
 def listar_manifestacoes(conn):
     sql = "SELECT * FROM manifestacao"  # definir em uma variavel o que eu quero passar pro SQL
     manifestações = listarBancoDados(conn, sql)
@@ -9,8 +8,11 @@ def listar_manifestacoes(conn):
     if manifestações == 0:
         print("Nenhuma manifestação cadastrada")
     else:
+        print(f'Aqui estão as manifestações cadastradas:')
         for n in range(len(manifestações)):
             print(f"{n + 1} - {manifestações[n]}")
+
+    encerrarConexao(conn)
 
 
 """  Tratamentos Necessários: 
