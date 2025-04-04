@@ -1,8 +1,7 @@
-from tabelas import Reclamacao
-from tabelas import Elogio
-from tabelas import Sugestao
+from tabelas import Reclamacao, Elogio, Sugestao
 
 
+# modificados lucas arruda !
 def adicionar_manifestacao():
     print("1) Adicionar Reclamação")
     print("2) Adicionar Elogio")
