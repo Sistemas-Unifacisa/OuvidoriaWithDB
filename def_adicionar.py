@@ -1,6 +1,5 @@
-from tabelas import Reclamacao
-from tabelas import Elogio
-from tabelas import Sugestao
+from tabelas import Reclamacao , Elogio, Sugestao
+
 
 
 def adicionar_manifestacao():

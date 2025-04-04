@@ -12,7 +12,7 @@ def load_database_config():
 
     # Verifica se existe a tabela Sugestao
     cursor = connection.cursor()
-    cursor.execute("SHOW TABLES LIKE 'Sugestao'")
+    cursor.execute("SHOW TABLES LIKE 'Sugestao'") 
     result = cursor.fetchone()
 
     if result:
