@@ -20,6 +20,7 @@ while True:
     opcao = int(input("> Escolha uma opção: "))
 
     if opcao == 1:  # Listagem das Manifestações
+        listar_manifestacoes(criarConexao())
         ...
     elif opcao == 2:  # Listagem de Manifestações por Tipo
         ...
