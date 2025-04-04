@@ -1,6 +1,7 @@
 from operacoesbd import *
-
+#Ryan M
 def excluir_manifestacao():
+    
     # Conexão com o banco de dados
     conex = criarConexao('127.0.0.1', 'root', '12345', 'ouvidoria')
 
