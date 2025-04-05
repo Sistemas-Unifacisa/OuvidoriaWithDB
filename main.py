@@ -5,12 +5,13 @@ Georgio Filho - Adicionar Filmes (feito )
 Ryan Matheus - Remover Filmes (Não sou vagabundo - Feito)
 """
 
-from def_listar import listar_manifestacoes
+from def_listar import listar_manifestacoes_por_tipo
 from operacoesbd import criarConexao, encerrarConexao
 from def_adicionar import adicionar_manifestacao
 from mostrar_menu import mostrar_menu
 from create_tables import load_database_config
 from def_remover import excluir_manifestacao
+
 load_database_config()
 # TODO: Solicitar login com nome do usuário para registro no sistema.
 
@@ -20,9 +21,9 @@ while True:
     opcao = int(input("> Escolha uma opção: "))
 
     if opcao == 1:  # Listagem das Manifestações
-        listar_manifestacoes(criarConexao())
         ...
     elif opcao == 2:  # Listagem de Manifestações por Tipo
+        listar_manifestacoes_por_tipo(criarConexao())
         ...
     elif opcao == 3:  # Criar uma nova Manifestação
         adicionar_manifestacao()

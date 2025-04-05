@@ -1,11 +1,15 @@
 from operacoesbd import listarBancoDados, encerrarConexao
+from connection import get_connection
 
-# Lucas Arruda -
+def listar_manifestacoes (conexão):
+    listar_Elogios()
+    listar_Sugestoes()
+    listar_Reclamacoes()
 
-def listar_manifestacoes(conexao):
-    menu = "1. Elogios\n2. Reclamações\n3. Sugestões\n4. Voltar\nEscolha uma opção: "
+def listar_manifestacoes_por_tipo(conexao):
+    menu = "1. Elogios\n2. Reclamações\n3. Sugestões\n4. Voltar\nEscolha uma opção:"
     while True:
-        try:
+        try: 
             opcao = int(input(menu))
             if opcao == 1:
                 listar_Elogios(conexao)
@@ -20,8 +24,10 @@ def listar_manifestacoes(conexao):
                 print("Opção inválida. Tente novamente.")
         except ValueError:
             print("Entrada inválida. Por favor, insira um número.")
-            
+
+
 def listar_Elogios(conexao):
+    get_connection()
     # Consulta SQL para selecionar todas as manifestações do tipo 'Elogio'
     sql = "SELECT * FROM Elogio"
 
@@ -39,6 +45,7 @@ def listar_Elogios(conexao):
 
 
 def listar_Reclamacoes(conexao):
+    get_connection()
     # Consulta SQL para selecionar todas as manifestações do tipo 'Reclamacao'
     sql = "SELECT * FROM Reclamacao"
 
@@ -56,6 +63,7 @@ def listar_Reclamacoes(conexao):
 
 
 def listar_Sugestoes(conexao):
+    get_connection()
     # Consulta SQL para selecionar todas as manifestações do tipo 'Sugestao'
     sql = "SELECT * FROM Sugestao"
 
