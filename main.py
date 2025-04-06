@@ -38,4 +38,4 @@ while True:
     else:
         print("Opção inválida. Tente novamente.")
         ...
-print("INFO: A locadora agradece sua participação ")
+print("INFO: A locadora agradece sua participação !!!")
