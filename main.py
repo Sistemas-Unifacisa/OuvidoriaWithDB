@@ -4,7 +4,7 @@ Carlos Lopes - Revisar a bagaça toda (faz porra nenhuma)
 Georgio Filho - Adicionar Filmes (feito )
 Ryan Matheus - Remover Filmes (Não sou vagabundo - Feito)
 """
-
+...
 from def_listar import listar_manifestacoes_por_tipo, listar_manifestacoes
 from operacoesbd import criarConexao, encerrarConexao
 from def_adicionar import adicionar_manifestacao
