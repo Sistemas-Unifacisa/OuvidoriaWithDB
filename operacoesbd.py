@@ -68,10 +68,10 @@ def atualizarBancoDados(connection, sql, dados):
 
 
 # Exclui dados no banco de dados com tratamento de exceções
-def excluirBancoDados(connection, sql, dados):
+def excluirBancoDados(connection, sql):
     try:
         cursor = connection.cursor(prepared=True)
-        cursor.execute(sql, dados)
+        cursor.execute(sql)
         connection.commit()
         linhasAfetadas = cursor.rowcount
     except mysql.connector.Error as err:

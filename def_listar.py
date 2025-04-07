@@ -1,18 +1,28 @@
-from operacoesbd import listarBancoDados, encerrarConexao
+from operacoesbd import listarBancoDados
 from connection import get_connection
 
 
 def listar_manifestacoes():
+    """
+    Função para listar todas as manifestações (elogios, reclamações e sugestões) do banco de dados.
+    """
+
     listar_Elogios()
     listar_Sugestoes()
     listar_Reclamacoes()
 
 
 def listar_manifestacoes_por_tipo():
-    menu = "1. Elogios\n2. Reclamações\n3. Sugestões\n4. Voltar\nEscolha uma opção:"
+    """
+    Função para listar manifestações por tipo (elogios, reclamações e sugestões).
+    """
+
+    menu = "\n1. Listar Elogios\n2. Listar Reclamações\n3. Listar Sugestões\n4. Voltar para o menu\n\n> Escolha uma opção: "
+
     while True:
-        try:
+        try:  # Tratativa de erro para entradas inválidas
             opcao = int(input(menu))
+
             if opcao == 1:
                 listar_Elogios()
             elif opcao == 2:
@@ -20,15 +30,20 @@ def listar_manifestacoes_por_tipo():
             elif opcao == 3:
                 listar_Sugestoes()
             elif opcao == 4:
-                print("Voltando ao menu principal...")
+                print("\nINFO: Voltando ao menu principal...")
                 break
             else:
-                print("Opção inválida. Tente novamente.")
+                print("\nINFO: Opção inválida. Tente novamente.")
+
         except ValueError:
-            print("Entrada inválida. Por favor, insira um número.")
+            print("\nERRO: Entrada inválida. Por favor, insira um número.")
 
 
 def listar_Elogios():
+    """
+    Função para listar todas as manifestações do tipo 'Elogio' do banco de dados.
+    """
+
     conexao = get_connection()
 
     # Consulta SQL para selecionar todas as manifestações do tipo 'Elogio'
@@ -38,11 +53,11 @@ def listar_Elogios():
     elogios = listarBancoDados(conexao, sql)
 
     if not elogios:
-        print("Nenhum elogio encontrado.")
+        print("\nINFO: Nenhum elogio encontrado.")
         return
 
     # Imprime as manifestações do tipo 'Elogio' encontradas
-    print("Elogios encontrados:")
+    print("\nINFO: Elogios encontrados:")
     for elogio in elogios:
         print(f"Código: {elogio[0]}, Descrição: {elogio[1]}")
 
@@ -50,6 +65,9 @@ def listar_Elogios():
 
 
 def listar_Reclamacoes():
+    """
+    Função para listar todas as manifestações do tipo 'Reclamacao' do banco de dados."""
+
     conexao = get_connection()
 
     # Consulta SQL para selecionar todas as manifestações do tipo 'Reclamacao'
@@ -63,7 +81,7 @@ def listar_Reclamacoes():
         return
 
     # Imprime as manifestações do tipo 'Reclamacao' encontradas
-    print("Reclamações encontradas:")
+    print("\nINFO: Reclamações encontradas:")
     for reclamacao in reclamacoes:
         print(f"Código: {reclamacao[0]}, Descrição: {reclamacao[1]}")
 
@@ -83,7 +101,7 @@ def listar_Sugestoes():
         return
 
     # Imprime as manifestações do tipo 'Sugestao' encontradas
-    print("Sugestões encontradas:")
+    print("\nINFO: Sugestões encontradas:")
     for sugestao in sugestoes:
         print(f"Código: {sugestao[0]}, Descrição: {sugestao[1]}")
     conexao.close()

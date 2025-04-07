@@ -1,3 +1,7 @@
+"""
+Este arquivo serve para criar as tabelas no banco de dados MySQL para o sistema de Ouvidoria.
+"""
+
 from connection import get_connection
 
 
@@ -12,7 +16,7 @@ def load_database_config():
 
     # Verifica se existe a tabela Sugestao
     cursor = connection.cursor()
-    cursor.execute("SHOW TABLES LIKE 'Sugestao'") 
+    cursor.execute("SHOW TABLES LIKE 'Sugestao'")
     result = cursor.fetchone()
 
     if result:

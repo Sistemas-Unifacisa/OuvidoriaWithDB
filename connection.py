@@ -1,3 +1,8 @@
+"""
+Este arquivo contém a função get_connection, que é responsável por criar uma conexão com o banco de dados MySQL.
+A biblioteca operacoesbd é utilizada para criar a conexão.
+"""
+
 from operacoesbd import criarConexao
 
 
@@ -7,4 +12,3 @@ def get_connection():
     )
 
     return connection
-...
