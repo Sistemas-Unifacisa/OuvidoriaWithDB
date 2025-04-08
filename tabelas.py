@@ -1,3 +1,7 @@
+"""
+Este módulo contém a classe Manifestacao e suas subclasses: Sugestao, Reclamacao e Elogio.
+"""
+
 from connection import get_connection
 from operacoesbd import insertNoBancoDados
 
@@ -17,13 +21,6 @@ class Manifestacao:
         connection.close()
 
         return result
-
-    def listar(self):
-        pass
-
-    def excluir(self, id):
-        pass
-
 
 class Sugestao(Manifestacao):
     ...
