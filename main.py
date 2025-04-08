@@ -11,9 +11,6 @@ from def_adicionar import adicionar_manifestacao
 from def_remover import selecionar_tipo_manifestacao_para_exclusao
 from pesquisar_por_codigo import pesquisar_manifestacao_por_codigo
 from quantidade_manifestacoes import mostrar_quantidade_manifestacoes
-from connection import load_database_config
-
-load_database_config()
 
 while True:
     print("*" * 30)

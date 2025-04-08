@@ -32,15 +32,14 @@ def adicionar_manifestacao():
         resultado = reclamacao.inserir()
 
         if resultado:
-            print(
-                f"\nINFO: Reclamação com código {resultado} registrada com sucesso!\n")
+            print(f"\nINFO: Reclamação com código {resultado} registrada com sucesso!\n")
             return
 
         print("\nERRO: Erro ao registrar a reclamação.\n")
 
     # Caso a opção escolhida seja Elogio
     elif resposta == 2:
-        descricao = input("\nDigite o seu elogio: ")
+        descricao = input("\nDigite o seu elogio: ").strip()
 
         if len(descricao) == 0:
             print("\nErro: Campo vazio!\n")
@@ -57,7 +56,6 @@ def adicionar_manifestacao():
 
     # Caso a opção escolhida seja Sugestão
     elif resposta == 3:
-        descricao = input("\nDigite a sua Sugestão:")
 
         if len(descricao) == 0:
             print("Erro! Campo vazio\n")
