@@ -27,10 +27,13 @@ def listar_manifestacoes_por_tipo():
 
             if opcao == 1:
                 listar_manifestacao(tabelas[1])
+                break
             elif opcao == 2:
                 listar_manifestacao(tabelas[0])
+                break
             elif opcao == 3:
                 listar_manifestacao(tabelas[2])
+                break
             elif opcao == 4:
                 print("\nINFO: Voltando ao menu principal...\n")
                 break

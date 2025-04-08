@@ -43,14 +43,13 @@ while True:
         elif opcao == 6:  # Excluir uma Manifestação pelo Código
             selecionar_tipo_manifestacao_para_exclusao()
         elif opcao == 7:  # Sair do Sistema
-
             break
         else:
-            print("\nERRO: Opção inválida. Tente novamente.")
-
-        input("Pressione qualquer tecla para continuar...")
-
+            print("\nERRO: Opção inválida. Tente novamente.\n")
     except ValueError:
         print("\nERRO: Entrada inválida. Por favor, insira um número.\n")
+
+    input("Pressione qualquer tecla para continuar...")
+
 
 print("\nINFO: A ouvidoria agradece sua participação !")
