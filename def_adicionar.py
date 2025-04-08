@@ -56,6 +56,7 @@ def adicionar_manifestacao():
 
     # Caso a opção escolhida seja Sugestão
     elif resposta == 3:
+        descricao = input("\nDigite a sua sugestão: ").strip()
 
         if len(descricao) == 0:
             print("Erro! Campo vazio\n")
