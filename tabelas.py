@@ -14,7 +14,7 @@ class Manifestacao:
         connection = get_connection()
 
         # usado o self.__class__.__name__ para pegar o nome da classe
-        sql = f"INSERT INTO {self.__class__.__name__} (descricao) VALUES ('{self.descricao}')"
+        sql = f"INSERT INTO Manifestacao (descricao, tipo) VALUES ('{self.descricao}', '{self.__class__.__name__}')"
 
         result = insertNoBancoDados(connection, sql)
 

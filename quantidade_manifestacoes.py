@@ -10,9 +10,9 @@ def mostrar_quantidade_manifestacoes():
     # Conectar ao banco de dados
     conexao = get_connection()
 
-    sql_sugestoes = "SELECT COUNT(*) FROM Sugestao"
-    sql_reclamacoes = "SELECT COUNT(*) FROM Reclamacao"
-    sql_elogios = "SELECT COUNT(*) FROM Elogio"
+    sql_sugestoes = "SELECT COUNT(*) FROM Manifestacao WHERE tipo = 'Sugestao'"
+    sql_reclamacoes = "SELECT COUNT(*) FROM Manifestacao WHERE tipo = 'Reclamacao'"
+    sql_elogios = "SELECT COUNT(*) FROM Manifestacao WHERE tipo = 'Elogio'"
 
     # Executar as consultas
     sugestoes = listarBancoDados(conexao, sql_sugestoes)

@@ -39,7 +39,7 @@ def excluir_manifestacao(excluirCodigo, tabela):
     confirmacao = input("\n> Tem certeza que deseja excluir? (s/n): ").lower()
 
     if confirmacao == "s":
-        consulta = f"DELETE FROM {tabela} WHERE id = {excluirCodigo}"
+        consulta = f"DELETE FROM Manifestacao WHERE id = {excluirCodigo} AND tipo = '{tabela}'"
         linhasModificadas = excluirBancoDados(conexao, consulta)
 
         if linhasModificadas == 0:
@@ -58,7 +58,7 @@ def exibir_manifestacao_para_exclusao(connection, tabela, excluirCodigo):
     Função que exibe a manifestação que será excluída.    
     """
 
-    sql = f"SELECT * FROM {tabela} WHERE id = {excluirCodigo}"
+    sql = f"SELECT * FROM Manifestacao WHERE id = {excluirCodigo} AND tipo = '{tabela}'"
     manifestacao = listarBancoDados(connection, sql)
 
     if manifestacao:

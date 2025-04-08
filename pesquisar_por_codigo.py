@@ -49,7 +49,7 @@ def buscar_por_categoria(categoria, tabela, codigo):
     connection = get_connection()
 
     # Cria a consulta SQL para buscar registros da categoria
-    sql = f"SELECT * FROM {tabela} WHERE id = {codigo}"
+    sql = f"SELECT * FROM Manifestacao WHERE id = {codigo} AND tipo = '{tabela}'"
 
     # Chama a função do módulo `operacoes_bd` para buscar registros no banco de dados
     registros = listarBancoDados(connection, sql)
