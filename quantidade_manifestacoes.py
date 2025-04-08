@@ -28,5 +28,4 @@ def mostrar_quantidade_manifestacoes():
     print(f"2) Elogios: {elogios[0][0]}")
     print(f"3) Sugestões: {sugestoes[0][0]}")
     print(
-        f"4) Total de manifestações: {sugestoes[0][0] + reclamacoes[0][0] + elogios[0][0]}"
-    )
+        f"4) Total de manifestações: {sugestoes[0][0] + reclamacoes[0][0] + elogios[0][0]}\n")

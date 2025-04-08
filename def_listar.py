@@ -3,6 +3,7 @@ from connection import get_connection
 
 tabelas = ["Reclamacao", "Elogio", "Sugestao"]
 
+
 def listar_manifestacoes():
     """
     Função para listar todas as manifestações (elogios, reclamações e sugestões) do banco de dados.
@@ -11,6 +12,7 @@ def listar_manifestacoes():
     listar_manifestacao(tabelas[0])
     listar_manifestacao(tabelas[1])
     listar_manifestacao(tabelas[2])
+    print("")
 
 
 def listar_manifestacoes_por_tipo():
@@ -20,7 +22,8 @@ def listar_manifestacoes_por_tipo():
 
     while True:
         try:  # Tratativa de erro para entradas inválidas
-            opcao = int(input("\n1. Listar Elogios\n2. Listar Reclamações\n3. Listar Sugestões\n4. Voltar para o menu\n\n> Escolha uma opção: "))
+            opcao = int(input(
+                "\n1. Listar Elogios\n2. Listar Reclamações\n3. Listar Sugestões\n4. Voltar para o menu\n\n> Escolha uma opção: "))
 
             if opcao == 1:
                 listar_manifestacao(tabelas[1])
@@ -42,19 +45,20 @@ def listar_manifestacao(tipo_manifestacao):
     """
     Função para listar uma manifestação específica (elogio, reclamação ou sugestão) por código.
     """
-        
+
     conexao = get_connection()
-    
+
     sql = f"SELECT * FROM {tipo_manifestacao}"
-    
+
     manifestacoes = listarBancoDados(conexao, sql)
 
     if not manifestacoes:
-        print(f"\nINFO: Nenhuma manifestação do tipo {tipo_manifestacao} encontrada.")
+        print(
+            f"\nINFO: Nenhuma manifestação do tipo {tipo_manifestacao} encontrada.")
         return
-    
+
     print(f"\nINFO: Manifestações do tipo {tipo_manifestacao} encontradas:")
-    
+
     for manifestacao in manifestacoes:
         print(f"Código: {manifestacao[0]}, Descrição: {manifestacao[1]}")
 
