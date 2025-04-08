@@ -1,45 +1,71 @@
-# 1. Criar menu para decidir qual categoria de manifestação, (Elogio, Reclamação ou Sugestão)
+from operacoesbd import listarBancoDados
 from connection import get_connection
-from operacoesbd import listarBancoDados  # Importa a função para buscar registros no banco de dados
+
+tabelas = ["Reclamacao", "Elogio", "Sugestao"]
+
+def pesquisar_manifestacao_por_codigo():
+    """
+    Função principal para pequisar uma manifestação por código.
+    """    
+
+    categoria_selecionada = exibir_menu_categoria()
+    codigo_manifestacao = get_codigo_manifestacao()
+    
+    buscar_por_categoria(categoria_selecionada, tabelas[categoria_selecionada - 1], codigo_manifestacao)
 
 def exibir_menu_categoria():
-    print("Qual categoria você deseja ver? ")
-    print("1. Elogio")
-    print("2. Reclamação")
+    """
+    Função que exibe o menu de categorias e retorna a opção escolhida pelo usuário.
+    """
+
+    print("\nINFO: Qual categoria você deseja ver? ")
+    print("1. Reclamação")
+    print("2. Elogio")
     print("3. Sugestão")
     
     while True:
         try:
-            opcao = int(input("Digite o número correspondente à categoria desejada: "))
+            opcao = int(input("\n> Digite o número correspondente à categoria desejada: "))
+            
             if opcao in [1, 2, 3]:
-                categorias = {1: "Elogio", 2: "Reclamação", 3: "Sugestão"}
-                print(f"Você selecionou: {categorias[opcao]}")
-                return categorias[opcao]
+                print(f"\nINFO: Você selecionou: {tabelas[opcao - 1]}")
+                return opcao
             else:
-                print("Opção inválida. Por favor, escolha entre 1, 2 ou 3.")
+                print("\nERRO: Opção inválida. Por favor, escolha entre 1, 2 ou 3.")
+        
         except ValueError:
-            print("Entrada inválida. Por favor, insira um número.")
+            print("\nERRO: Opção inválida. Por favor, insira um número.")
 
-def buscar_por_categoria(categoria):
+def buscar_por_categoria(categoria, tabela, codigo):
+    """
+    Função que busca registros no banco de dados com base na categoria e código fornecidos.
+    """    
+
+    connection = get_connection() 
+
     # Cria a consulta SQL para buscar registros da categoria
-    sql = f"SELECT id, descricao FROM manifestacoes WHERE categoria = '{categoria}'"
+    sql = f"SELECT * FROM {tabela} WHERE id = {codigo}"
     
     # Chama a função do módulo `operacoes_bd` para buscar registros no banco de dados
-    registros = listarBancoDados(sql)
+    registros = listarBancoDados(connection, sql)
     
     if registros:
-        print(f"\nRegistros encontrados para a categoria '{categoria}':")
+        print(f"\nINFO: Registros encontrados para a categoria '{categoria}':")
+        
         for registro in registros:
-            print(f"ID: {registro['id']}, Descrição: {registro['descricao']}")
+            print(f"ID: {registro[0]}, Descrição: {registro[1]}")
     else:
-        print(f"\nNenhum registro encontrado para a categoria '{categoria}'.")
+        print(f"\nINFO: Nenhum registro encontrado para a categoria '{categoria}'.\n")
 
-if __name__ == "__main__":
-    # Exibe o menu e obtém a categoria selecionada
-    categoria_selecionada = exibir_menu_categoria()
-    
-    # Busca e exibe os registros da categoria selecionada
-    buscar_por_categoria(categoria_selecionada)
-# 2. Criar um input informando qual o código para pesquisar (int)
-# 3. Realizar conexão na tabela escolhida
+def get_codigo_manifestacao():
+    """
+    Função que solicita ao usuário o código da manifestação e valida a entrada.
+    """
 
+    while True:
+        try:
+            codigo = int(input("\n> Digite o código da manifestação: "))
+            return codigo
+        
+        except ValueError:
+            print("\nERRO: Código inválido. Por favor, insira um número inteiro.")

@@ -1,15 +1,16 @@
 from operacoesbd import listarBancoDados
 from connection import get_connection
 
+tabelas = ["Reclamacao", "Elogio", "Sugestao"]
 
 def listar_manifestacoes():
     """
     Função para listar todas as manifestações (elogios, reclamações e sugestões) do banco de dados.
     """
 
-    listar_Elogios()
-    listar_Sugestoes()
-    listar_Reclamacoes()
+    listar_manifestacao(tabelas[0])
+    listar_manifestacao(tabelas[1])
+    listar_manifestacao(tabelas[2])
 
 
 def listar_manifestacoes_por_tipo():
@@ -17,20 +18,18 @@ def listar_manifestacoes_por_tipo():
     Função para listar manifestações por tipo (elogios, reclamações e sugestões).
     """
 
-    menu = "\n1. Listar Elogios\n2. Listar Reclamações\n3. Listar Sugestões\n4. Voltar para o menu\n\n> Escolha uma opção: "
-
     while True:
         try:  # Tratativa de erro para entradas inválidas
-            opcao = int(input(menu))
+            opcao = int(input("\n1. Listar Elogios\n2. Listar Reclamações\n3. Listar Sugestões\n4. Voltar para o menu\n\n> Escolha uma opção: "))
 
             if opcao == 1:
-                listar_Elogios()
+                listar_manifestacao(tabelas[1])
             elif opcao == 2:
-                listar_Reclamacoes()
+                listar_manifestacao(tabelas[0])
             elif opcao == 3:
-                listar_Sugestoes()
+                listar_manifestacao(tabelas[2])
             elif opcao == 4:
-                print("\nINFO: Voltando ao menu principal...")
+                print("\nINFO: Voltando ao menu principal...\n")
                 break
             else:
                 print("\nINFO: Opção inválida. Tente novamente.")
@@ -39,69 +38,24 @@ def listar_manifestacoes_por_tipo():
             print("\nERRO: Entrada inválida. Por favor, insira um número.")
 
 
-def listar_Elogios():
+def listar_manifestacao(tipo_manifestacao):
     """
-    Função para listar todas as manifestações do tipo 'Elogio' do banco de dados.
+    Função para listar uma manifestação específica (elogio, reclamação ou sugestão) por código.
     """
-
+        
     conexao = get_connection()
+    
+    sql = f"SELECT * FROM {tipo_manifestacao}"
+    
+    manifestacoes = listarBancoDados(conexao, sql)
 
-    # Consulta SQL para selecionar todas as manifestações do tipo 'Elogio'
-    sql = "SELECT * FROM Elogio"
-
-    # Verifica se existem manifestações do tipo 'Elogio'
-    elogios = listarBancoDados(conexao, sql)
-
-    if not elogios:
-        print("\nINFO: Nenhum elogio encontrado.")
+    if not manifestacoes:
+        print(f"\nINFO: Nenhuma manifestação do tipo {tipo_manifestacao} encontrada.")
         return
+    
+    print(f"\nINFO: Manifestações do tipo {tipo_manifestacao} encontradas:")
+    
+    for manifestacao in manifestacoes:
+        print(f"Código: {manifestacao[0]}, Descrição: {manifestacao[1]}")
 
-    # Imprime as manifestações do tipo 'Elogio' encontradas
-    print("\nINFO: Elogios encontrados:")
-    for elogio in elogios:
-        print(f"Código: {elogio[0]}, Descrição: {elogio[1]}")
-
-    conexao.close()
-
-
-def listar_Reclamacoes():
-    """
-    Função para listar todas as manifestações do tipo 'Reclamacao' do banco de dados."""
-
-    conexao = get_connection()
-
-    # Consulta SQL para selecionar todas as manifestações do tipo 'Reclamacao'
-    sql = "SELECT * FROM Reclamacao"
-
-    # Verifica se existem manifestações do tipo 'Reclamacao'
-    reclamacoes = listarBancoDados(conexao, sql)
-
-    if not reclamacoes:
-        print("Nenhuma reclamação encontrada.")
-        return
-
-    # Imprime as manifestações do tipo 'Reclamacao' encontradas
-    print("\nINFO: Reclamações encontradas:")
-    for reclamacao in reclamacoes:
-        print(f"Código: {reclamacao[0]}, Descrição: {reclamacao[1]}")
-
-    conexao.close()
-
-
-def listar_Sugestoes():
-    conexao = get_connection()
-    # Consulta SQL para selecionar todas as manifestações do tipo 'Sugestao'
-    sql = "SELECT * FROM Sugestao"
-
-    # Verifica se existem manifestações do tipo 'Sugestao'
-    sugestoes = listarBancoDados(conexao, sql)
-
-    if not sugestoes:
-        print("Nenhuma sugestão encontrada.")
-        return
-
-    # Imprime as manifestações do tipo 'Sugestao' encontradas
-    print("\nINFO: Sugestões encontradas:")
-    for sugestao in sugestoes:
-        print(f"Código: {sugestao[0]}, Descrição: {sugestao[1]}")
     conexao.close()

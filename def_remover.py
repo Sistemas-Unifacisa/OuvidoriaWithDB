@@ -1,75 +1,69 @@
 from connection import get_connection
 from operacoesbd import excluirBancoDados, listarBancoDados
 
-# TODO: Deixar o código mais limpo e organizado.
-
-
-def excluir_manifestacao():
+def selecionar_tipo_manifestacao_para_exclusao():
     """
-    Função para excluir uma manifestão do banco de dados.
+    Função que escolhe o tipo de manifestação a ser excluída.
     """
-
-    print("\nINFO: Opcões disponíveis:")
-    print("1) Remover Reclamação")
-    print("2) Remover Elogio")
-    print("3) Remover Sugestões")
 
     tabelas = ["Reclamacao", "Elogio", "Sugestao"]
-    resposta = int(input("\n> Escolha uma categoria: "))
+    
+    print("\nINFO: Opcões disponíveis:\n1) Remover Reclamação\n2) Remover Elogio\n3) Remover Sugestões")
 
-    excluirCodigo = int(
-        input("\n> Digite o código da manifestação que deseja excluir: ")
-    )
+    try:
+        resposta = int(input("\n> Escolha uma categoria: "))
 
-    if resposta == 1:
-        excluir_entidade(excluirCodigo, tabelas[0])
-    elif resposta == 2:
-        excluir_entidade(excluirCodigo, tabelas[1])
-    elif resposta == 3:
-        excluir_entidade(excluirCodigo, tabelas[2])
+        if resposta not in [1, 2, 3]:
+            print("\nINFO: Opção inválida.")
+            return
+
+    except ValueError:
+        print("Entrada inválida. Digite um número.")
+        return
+
+    excluirCodigo = int(input("\n> Digite o código da manifestação que deseja excluir: "))
+    excluir_manifestacao(excluirCodigo, tabelas[resposta - 1])
 
 
-def excluir_entidade(excluirCodigo, tabela):
-    while True:
-        conexao = get_connection()
+def excluir_manifestacao(excluirCodigo, tabela):
+    """
+    Função que exclui a manifestação do banco de dados.
+    """
 
-        existe_manifestacao = mostrar_manifestacao_pra_ser_deletada(
-            conexao, tabela, excluirCodigo
-        )
+    conexao = get_connection()
 
-        if not existe_manifestacao:
+    if not exibir_manifestacao_para_exclusao(conexao, tabela, excluirCodigo):
+        print("\nINFO: Nenhuma manifestação encontrada com esse código.")
+        return
+
+    confirmacao = input("\n> Tem certeza que deseja excluir? (s/n): ").lower()
+
+    if confirmacao == "s":
+        consulta = f"DELETE FROM {tabela} WHERE id = {excluirCodigo}"
+        linhasModificadas = excluirBancoDados(conexao, consulta)
+
+        if linhasModificadas == 0:
             print("\nINFO: Nenhuma manifestação encontrada com esse código.")
-            break
-
-        confirmacao = input("\n> Tem certeza que deseja excluir? (s/n): ")
-
-        if confirmacao.lower() == "s":
-            consulta = f"DELETE FROM {tabela} WHERE id = {excluirCodigo}"
-
-            linhasModificadas = excluirBancoDados(conexao, consulta)
-
-            if linhasModificadas == 0:
-                print("\nINFO: Nenhuma manifestação encontrada com esse código.")
-            else:
-                print("\nINFO: Manifestação excluída com sucesso.")
-            break  # Encerra o loop após a tentativa
-
-        elif confirmacao.lower() == "n":
-            print("Operação cancelada.")
-            break
-
         else:
-            print("Opção inválida. DIGITE APENAS : (S/N)")
+            print("\nINFO: Manifestação excluída com sucesso.")
+
+    elif confirmacao == "n":
+        print("\nINFO: Operação cancelada.")
+    else:
+        print("\nINFO: Opção inválida. DIGITE APENAS : (S/N)")
 
 
-def mostrar_manifestacao_pra_ser_deletada(connection, tabela, excluirCodigo):
+def exibir_manifestacao_para_exclusao(connection, tabela, excluirCodigo):
+    """
+    Função que exibe a manifestação que será excluída.    
+    """
+
     sql = f"SELECT * FROM {tabela} WHERE id = {excluirCodigo}"
     manifestacao = listarBancoDados(connection, sql)
 
     if manifestacao:
         print(f"\nCódigo: {manifestacao[0][0]}")
         print(f"\nDescrição: {manifestacao[0][1]}")
-
         return True
 
     return False
